@@ -44,12 +44,11 @@ public class TestGoogleTest {
 
   @Test
   public void testGoogle() {
-    driver.get("https://www.google.com/");
+    driver.get("https://duckduckgo.com/");
     //driver.manage().window().setSize(new Dimension(1376, 1032));
     driver.manage().window().maximize();
-    driver.findElement(By.id("W0wltc")).click();
-    driver.findElement(By.id("APjFqb")).click();
-    driver.findElement(By.id("APjFqb")).sendKeys("abc");
-    driver.findElement(By.name("btnK")).click();
+    driver.findElement(By.id("searchbox_input")).click();
+    driver.findElement(By.id("searchbox_input")).sendKeys("abc");
+    driver.findElement(By.cssSelector("button.iconButton_button__A_Uiu:nth-child(2)")).click();
   }
 }
