@@ -79,13 +79,13 @@ public class TestSeleniumTest {
         driver = new ChromeDriver(options);
         break;
       }
-      case "edge": {
+      case "MicrosoftEdge": {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--no-sandbox");
+        /*options.addArguments("--no-sandbox");
         String userDataDir = "--user-data-dir=" + System.getProperty("java.io.tmpdir") + "temp_profile";
         System.out.println(userDataDir);
-        options.addArguments(userDataDir);
-        setArgumentsInOptions(options, "edge");
+        options.addArguments(userDataDir);*/
+        setArgumentsInOptions(options, "MicrosoftEdge");
         driver = new EdgeDriver(options);
         break;
       }
@@ -110,6 +110,11 @@ public class TestSeleniumTest {
           chromeOptions.addArguments(arguments);
           break;
         }
+        case "MicrosoftEdge": {
+          EdgeOptions edgeOptions = (EdgeOptions) options;
+          edgeOptions.addArguments(arguments);
+          break;
+        }
         default:
           break;
       }
@@ -131,9 +136,9 @@ public class TestSeleniumTest {
 
   //@Test
   @ParameterizedTest
-  @ValueSource(strings = { "firefox", "chrome" })
+  @ValueSource(strings = { "firefox", "chrome", "MicrosoftEdge" })
   public void testDuckDuckGo(String browserName) {
-    WebDriver driver = createRemoteDriver(browserName);
+    WebDriver driver = createLocalDriver(browserName);
     driver.get("https://duckduckgo.com/");
     driver.manage().window().maximize();
     driver.findElement(By.id("searchbox_input")).click();
@@ -146,7 +151,7 @@ public class TestSeleniumTest {
   @ParameterizedTest
   @ValueSource(strings = { "firefox", "chrome", "MicrosoftEdge" })
   public void testAbebooks(String browserName) throws IOException {
-    try (var crd = new CloseableWebDriver(createRemoteDriver(browserName))) {
+    try (var crd = new CloseableWebDriver(createLocalDriver(browserName))) {
       WebDriver driver = crd.getDriver();
       //WebDriver driver = createRemoteDriver(browserName);
       driver.get("https://www.abebooks.fr/");
