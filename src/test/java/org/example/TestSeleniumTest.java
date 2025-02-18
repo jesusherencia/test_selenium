@@ -26,7 +26,7 @@ import java.util.*;
 
 @Execution(ExecutionMode.CONCURRENT)
 //@RunWith(Parameterized.class)
-public class TestGoogleTest {
+public class TestSeleniumTest {
   private WebDriver driver;
   private Map<String, Object> vars;
   JavascriptExecutor js;
